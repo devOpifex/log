@@ -26,7 +26,9 @@ The package comes with a single reference class to create logs.
 
 A logger is created from the `Logger` class. Setting `write` to `TRUE`
 will write every message logged to the `file`. The `prefix` is a string
-that will precede every message.
+that will precede every message. The `sep` argument is the separator
+between the `prefix` and the rest of the message to the right, it
+defaults to a tab (`t`).
 
 ``` r
 library(log)
@@ -35,9 +37,12 @@ library(log)
 log <- Logger$new(
   prefix = "",
   write = FALSE,
-  file = "log.log"
+  file = "log.log",
+  sep = "\t"
 )
 ```
+
+*Different loggers can write to the same file.*
 
 One can leave `write` as the default `FALSE` and later use the `dump`
 method to save it to a file.
@@ -84,8 +89,8 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     01-12-2020 20:28:12 Oh no 
-#> ERROR     01-12-2020 20:28:13 Snap!
+#> ERROR     01-12-2020 20:49:53 Oh no 
+#> ERROR     01-12-2020 20:49:54 Snap!
 ```
 
 You can also customise the look of the prefix with `hook`, pass it a
@@ -113,8 +118,8 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     20:28:13 [README.md] f|y|q Oh no 
-#> ERROR     20:28:14 [README.md] s|u|z Snap!
+#> ERROR     20:49:54 [README.md] x|z|j Oh no 
+#> ERROR     20:49:55 [README.md] d|o|m Snap!
 ```
 
 ### Hook

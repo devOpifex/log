@@ -66,7 +66,7 @@ Logger <- R6::R6Class(
 #' @param fn A function that accepts one argument (string)
 #' and returns a modified version of that string.
     hook = function(fn){
-      private$.prefixHook <- fn(private$.prefix)
+      private$.prefixHook <- fn
       invisible(self)
     },
 #' @details Include the directory in the log
@@ -108,7 +108,7 @@ Logger <- R6::R6Class(
       msg_return <- paste(private$.prefix, private$.sep, cbs, msg, "\n")
       msg_print <- msg_return
       if(!is.null(private$.prefixHook))
-        msg_print <- paste(private$.prefixHook, private$.sep, cbs, msg, "\n")
+        msg_print <- paste(private$.prefixHook(private$.prefix), private$.sep, cbs, msg, "\n")
 
       cat(msg_print)
 

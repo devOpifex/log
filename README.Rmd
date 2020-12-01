@@ -51,6 +51,8 @@ log <- Logger$new(
 )
 ```
 
+_Different loggers can write to the same file._
+
 One can leave `write` as the default `FALSE` and later use the `dump` method to save it to a file.
 
 ### Basic
