@@ -1,0 +1,75 @@
+---
+output: 
+  github_document:
+    html_preview: false
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+# log
+
+A logger for R.
+
+## Installation
+
+Get it from github.
+
+``` r
+# install.packages("remotes")
+remotes::install_github("devOpifex/log")
+```
+
+## Example
+
+The package comes with a single reference class to create logs.
+
+```{r}
+log <- Logger$new(prefix = "INFO")
+log$log("Something")
+Sys.sleep(.7)
+log$log("Something else")
+```
+
+You can easily add timestamps and more.
+
+```{r}
+errorLog <- Logger$new("ERROR")$
+  date()$
+  time()
+errorLog$log("Oh no")
+Sys.sleep(.7)
+errorLog$log("Snap!")
+```
+
+You can also customise the look of the prefix with `hook`, pass it a function that will take the prefix and return a modified version of it.
+
+```{r}
+# using crayon
+errorLog <- errorLog$hook(crayon::red)
+
+# fancier
+hook <- function(x) {
+  paste(crayon::blue(cli::symbol$info, x))
+}
+
+log <- Logger$new("INFO")$hook(hook)
+log$log("Fancy this!?")
+```
+
+Finally you can dump the log to a file with `dump`.
+
+```r
+log$dump("file.txt")
+```

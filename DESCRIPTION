@@ -1,0 +1,21 @@
+Package: log
+Title: Log Events and Issues
+Version: 1.0.0
+Authors@R: 
+    c(
+    person(given = "John",
+           family = "Coene",
+           role = c("aut", "cre"),
+           email = "jcoenep@gmail.com"),
+    person(family = "Opifex",
+           role = c("cph"),
+           email = "john@opifex.org")
+    )
+Description: Logger to keep track of informational events and errors useful for debugging.
+License: AGPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1.9000
+Suggests:
+    crayon
