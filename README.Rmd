@@ -37,7 +37,7 @@ The package comes with a single reference class to create logs.
 
 ### Setup
 
-A logger is created from the `Logger` class. Setting `write` to `TRUE` will write every message logged to the `file`. The `prefix` is a string that will precede every message.
+A logger is created from the `Logger` class. Setting `write` to `TRUE` will write every message logged to the `file`. The `prefix` is a string that will precede every message. The `sep` argument is the separator between the `prefix` and the rest of the message to the right, it defaults to a tab (`t`).
 
 ```{r}
 library(log)
@@ -46,7 +46,8 @@ library(log)
 log <- Logger$new(
   prefix = "",
   write = FALSE,
-  file = "log.log"
+  file = "log.log",
+  sep = "\t"
 )
 ```
 

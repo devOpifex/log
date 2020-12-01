@@ -22,10 +22,13 @@ Logger <- R6::R6Class(
 #' @param file Name of the file to dump the logs to, 
 #' only used if `write` is `TRUE`.
 #' @param write Whether to write the log to the `file`.
-    initialize = function(prefix = "", write = FALSE, file = "log.log"){
+#' @param sep Separator between `prefix` and other flags 
+#' and messages.
+    initialize = function(prefix = "", write = FALSE, file = "log.log", sep = "\t"){
       private$.prefix <- prefix
       private$.file <- file
       private$.write <- write
+      private$.sep <- sep
     },
 #' @details Include the date in the log
 #' @param format Formatter for the item, passed
@@ -102,10 +105,10 @@ Logger <- R6::R6Class(
       cbs <- paste(cbs, collapse = " ")
 
       # prefix
-      msg_return <- paste(private$.prefix, "\t", cbs, msg, "\n")
+      msg_return <- paste(private$.prefix, private$.sep, cbs, msg, "\n")
       msg_print <- msg_return
       if(!is.null(private$.prefixHook))
-        msg_print <- paste(private$.prefixHook, "\t", cbs, msg, "\n")
+        msg_print <- paste(private$.prefixHook, private$.sep, cbs, msg, "\n")
 
       cat(msg_print)
 
@@ -129,7 +132,8 @@ Logger <- R6::R6Class(
     .callbacks = list(),
     .log = c(),
     .file = "log.txt",
-    .write = FALSE
+    .write = FALSE,
+    .sep = "\t"
   )
 )
 

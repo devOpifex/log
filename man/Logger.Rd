@@ -37,7 +37,7 @@ infoLog$log("World")
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Logger$new(prefix = "", write = FALSE, file = "log.log")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Logger$new(prefix = "", write = FALSE, file = "log.log", sep = "\\t")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -49,6 +49,9 @@ infoLog$log("World")
 
 \item{\code{file}}{Name of the file to dump the logs to,
 only used if \code{write} is \code{TRUE}.}
+
+\item{\code{sep}}{Separator between \code{prefix} and other flags
+and messages.}
 }
 \if{html}{\out{</div>}}
 }
