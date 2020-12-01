@@ -23,11 +23,18 @@ remotes::install_github("devOpifex/log")
 The package comes with a single reference class to create logs.
 
 ``` r
+library(log)
+
 log <- Logger$new(prefix = "INFO")
-log$log("Something")
-#> INFO       Something
-Sys.sleep(.7)
-log$log("Something else")
+
+fnc <- function() {
+  log$log("Something")
+  Sys.sleep(.7)
+  log$log("Something else")
+}
+
+fnc()
+#> INFO       Something 
 #> INFO       Something else
 ```
 
@@ -37,11 +44,16 @@ You can easily add timestamps and more.
 errorLog <- Logger$new("ERROR")$
   date()$
   time()
-errorLog$log("Oh no")
-#> ERROR     01-12-2020 17:52:58 Oh no
-Sys.sleep(.7)
-errorLog$log("Snap!")
-#> ERROR     01-12-2020 17:52:58 Snap!
+
+fnc <- function() {
+  errorLog$log("Oh no")
+  Sys.sleep(.7)
+  errorLog$log("Snap!")
+}
+
+fnc()
+#> ERROR     01-12-2020 17:56:23 Oh no 
+#> ERROR     01-12-2020 17:56:23 Snap!
 ```
 
 You can also customise the look of the prefix with `hook`, pass it a
