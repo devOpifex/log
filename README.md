@@ -7,7 +7,7 @@
 
 # log
 
-A logger for R.
+A logger for R inspired by go’s standard library log package.
 
 ## Installation
 
@@ -22,9 +22,33 @@ remotes::install_github("devOpifex/log")
 
 The package comes with a single reference class to create logs.
 
+### Setup
+
+A logger is created from the `Logger` class. Setting `write` to `TRUE`
+will write every message logged to the `file`. The `prefix` is a string
+that will precede every message.
+
 ``` r
 library(log)
 
+# defaults
+log <- Logger$new(
+  prefix = "",
+  write = FALSE,
+  file = "log.log"
+)
+```
+
+One can leave `write` as the default `FALSE` and later use the `dump`
+method to save it to a file.
+
+### Basic
+
+After the logger has been instantiated one can use the `log` method to
+log a message to the console (and the file depending on whether that was
+set).
+
+``` r
 log <- Logger$new(prefix = "INFO")
 
 fnc <- function() {
@@ -38,7 +62,15 @@ fnc()
 #> INFO       Something else
 ```
 
-You can easily add timestamps and more.
+### Flags
+
+When setting up the logger one can customise it with “flags” so it
+includes a bit more information that might be useful to debug, e.g.: the
+time and date at which the message was logged. These will be written
+after the `prefix` and are placed in the order they are used (e.g.: date
+then time as shown below).
+
+The date and time format can be customised with the `format` argument.
 
 ``` r
 errorLog <- Logger$new("ERROR")$
@@ -52,12 +84,43 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     01-12-2020 17:56:23 Oh no 
-#> ERROR     01-12-2020 17:56:23 Snap!
+#> ERROR     01-12-2020 20:28:12 Oh no 
+#> ERROR     01-12-2020 20:28:13 Snap!
 ```
 
 You can also customise the look of the prefix with `hook`, pass it a
 function that will take the prefix and return a modified version of it.
+
+While the package comes with basic flags you can add your own with the
+`flag` method. This method accepts either a function that will be run
+every time a message is logged or a string that will simply be included
+in the message.
+
+``` r
+random_flag <- function(){
+  paste0(sample(letters, 3), collapse = "|")
+}
+
+l <- Logger$new("ERROR")$
+  time()$
+  flag("[README.md]")$
+  flag(random_flag)
+
+fnc <- function() {
+  l$log("Oh no")
+  Sys.sleep(.7)
+  l$log("Snap!")
+}
+
+fnc()
+#> ERROR     20:28:13 [README.md] f|y|q Oh no 
+#> ERROR     20:28:14 [README.md] s|u|z Snap!
+```
+
+### Hook
+
+There is also the possibility to pass a “hook;” a function that will
+preprocess the prefix and return a modified version of it.
 
 ``` r
 # using crayon
@@ -73,8 +136,10 @@ log$log("Fancy this!?")
 #> ℹ INFO     Fancy this!?
 ```
 
+### Dump
+
 Finally you can dump the log to a file with `dump`.
 
 ``` r
-log$dump("file.txt")
+log$dump("stuff.log")
 ```

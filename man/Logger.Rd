@@ -26,6 +26,7 @@ infoLog$log("World")
 \item \href{#method-unix}{\code{Logger$unix()}}
 \item \href{#method-hook}{\code{Logger$hook()}}
 \item \href{#method-dir}{\code{Logger$dir()}}
+\item \href{#method-flag}{\code{Logger$flag()}}
 \item \href{#method-log}{\code{Logger$log()}}
 \item \href{#method-dump}{\code{Logger$dump()}}
 \item \href{#method-clone}{\code{Logger$clone()}}
@@ -36,13 +37,18 @@ infoLog$log("World")
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Logger$new(prefix = "")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Logger$new(prefix = "", write = FALSE, file = "log.log")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{prefix}}{String to prefix all log messages.}
+
+\item{\code{write}}{Whether to write the log to the \code{file}.}
+
+\item{\code{file}}{Name of the file to dump the logs to,
+only used if \code{write} is \code{TRUE}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -141,6 +147,27 @@ Include the directory in the log
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-flag"></a>}}
+\if{latex}{\out{\hypertarget{method-flag}{}}}
+\subsection{Method \code{flag()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Logger$flag(what)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{what}}{Function to run for every message logged
+or string to include in log message.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Details}{
+Pass a custom flag
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-log"></a>}}
 \if{latex}{\out{\hypertarget{method-log}{}}}
 \subsection{Method \code{log()}}{
@@ -165,7 +192,7 @@ Log messages
 \if{latex}{\out{\hypertarget{method-dump}{}}}
 \subsection{Method \code{dump()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Logger$dump(file = "log.txt")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Logger$dump(file = "dump.log")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

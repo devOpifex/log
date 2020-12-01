@@ -19,8 +19,13 @@ Logger <- R6::R6Class(
 #' @details Initialise
 #' 
 #' @param prefix String to prefix all log messages.
-    initialize = function(prefix = ""){
+#' @param file Name of the file to dump the logs to, 
+#' only used if `write` is `TRUE`.
+#' @param write Whether to write the log to the `file`.
+    initialize = function(prefix = "", write = FALSE, file = "log.log"){
       private$.prefix <- prefix
+      private$.file <- file
+      private$.write <- write
     },
 #' @details Include the date in the log
 #' @param format Formatter for the item, passed
@@ -70,6 +75,21 @@ Logger <- R6::R6Class(
       private$.callbacks <- append(private$.callbacks, callback)
       invisible(self)
     },
+#' @details Pass a custom flag
+#' @param what Function to run for every message logged
+#' or string to include in log message.
+    flag = function(what){
+
+      if(!is.function(what))
+        fn <- function(){
+          return(what)
+        }
+      else 
+        fn <- what
+
+      private$.callbacks <- append(private$.callbacks, fn)
+      invisible(self)
+    },
 #' @details Log messages
 #' @param msg Message to log
     log = function(msg = ""){
@@ -88,16 +108,18 @@ Logger <- R6::R6Class(
         msg_print <- paste(private$.prefixHook, "\t", cbs, msg, "\n")
 
       cat(msg_print)
-      private$.log <- c(private$.log, msg_return)
+
+      if(private$.write)
+        write(clean_msg(msg_return), private$.file, append = TRUE)
+      else 
+        private$.log <- c(private$.log, msg_return)
 
       invisible(msg_return)
     },
 #' @details Dump the log to a file
 #' @param file Name of the file to dump the logs to.
-    dump = function(file = "log.txt"){
-      log <- sapply(private$.log, function(l){
-        gsub("\\n", "", l)
-      })
+    dump = function(file = "dump.log"){
+      log <- sapply(private$.log, clean_msg)
       writeLines(log, file)
     }
   ),
@@ -105,6 +127,12 @@ Logger <- R6::R6Class(
     .prefix = "",
     .prefixHook = NULL,
     .callbacks = list(),
-    .log = c()
+    .log = c(),
+    .file = "log.txt",
+    .write = FALSE
   )
 )
+
+clean_msg <- function(msg){
+  gsub("\\n", "", msg)
+}
