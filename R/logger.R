@@ -61,6 +61,15 @@ Logger <- R6::R6Class(
       private$.callbacks <- append(private$.callbacks, callback)
       invisible(self)
     },
+#' @details Include the working directory
+    wd = function(){
+      callback <- function(){
+        getwd()
+      }
+
+      private$.callbacks <- append(private$.callbacks, callback)
+      invisible(self)
+    },
 #' @details Preprocess the prefix with a custom function
 #' 
 #' @param fn A function that accepts one argument (string)

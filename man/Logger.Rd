@@ -24,6 +24,7 @@ infoLog$log("World")
 \item \href{#method-date}{\code{Logger$date()}}
 \item \href{#method-time}{\code{Logger$time()}}
 \item \href{#method-unix}{\code{Logger$unix()}}
+\item \href{#method-wd}{\code{Logger$wd()}}
 \item \href{#method-hook}{\code{Logger$hook()}}
 \item \href{#method-dir}{\code{Logger$dir()}}
 \item \href{#method-flag}{\code{Logger$flag()}}
@@ -112,6 +113,19 @@ Include the time in the log
 
 \subsection{Details}{
 Include the time in the log
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-wd"></a>}}
+\if{latex}{\out{\hypertarget{method-wd}{}}}
+\subsection{Method \code{wd()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Logger$wd()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Include the working directory
 }
 
 }

@@ -31,11 +31,9 @@ Get it from github.
 remotes::install_github("devOpifex/log")
 ```
 
-## Example
-
 The package comes with a single reference class to create logs.
 
-### Setup
+## Setup
 
 A logger is created from the `Logger` class. Setting `write` to `TRUE` will write every message logged to the `file`. The `prefix` is a string that will precede every message. The `sep` argument is the separator between the `prefix` and the rest of the message to the right, it defaults to a tab (`t`).
 
@@ -55,7 +53,7 @@ _Different loggers can write to the same file._
 
 One can leave `write` as the default `FALSE` and later use the `dump` method to save it to a file.
 
-### Basic
+## Basic
 
 After the logger has been instantiated one can use the `log` method to log a message to the console (and the file depending on whether that was set).
 
@@ -71,7 +69,7 @@ fnc <- function() {
 fnc()
 ```
 
-### Flags
+## Flags
 
 When setting up the logger one can customise it with "flags" so it includes a bit more information that might be useful to debug, e.g.: the time and date at which the message was logged. These will be written after the `prefix` and are placed in the order they are used (e.g.: date then time as shown below).
 
@@ -90,6 +88,13 @@ fnc <- function() {
 
 fnc()
 ```
+
+Flags available:
+
+- `date` - current date
+- `time` - current time
+- `unix` - unix timestamp
+- `wd` - working directory
 
 You can also customise the look of the prefix with `hook`, pass it a function that will take the prefix and return a modified version of it.
 
@@ -114,7 +119,7 @@ fnc <- function() {
 fnc()
 ```
 
-### Hook
+## Hook
 
 There is also the possibility to pass a "hook;" a function that will preprocess the prefix and return a modified version of it.
 
@@ -131,7 +136,7 @@ log <- Logger$new("INFO")$hook(hook)
 log$log("Fancy this!?")
 ```
 
-### Dump
+## Dump
 
 Finally you can dump the log to a file with `dump`.
 
