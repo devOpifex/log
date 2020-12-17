@@ -89,8 +89,8 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     01-12-2020 20:49:53 Oh no 
-#> ERROR     01-12-2020 20:49:54 Snap!
+#> ERROR     17-12-2020 22:10:36 Oh no 
+#> ERROR     17-12-2020 22:10:36 Snap!
 ```
 
 You can also customise the look of the prefix with `hook`, pass it a
@@ -118,8 +118,8 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     20:49:54 [README.md] x|z|j Oh no 
-#> ERROR     20:49:55 [README.md] d|o|m Snap!
+#> ERROR     22:10:36 [README.md] s|l|v Oh no 
+#> ERROR     22:10:37 [README.md] h|m|q Snap!
 ```
 
 ### Hook
@@ -147,4 +147,19 @@ Finally you can dump the log to a file with `dump`.
 
 ``` r
 log$dump("stuff.log")
+```
+
+## Erratum
+
+The package supports [erratum](https://github.com/devOpifex/erratum) so
+one can easily log errors and warnings.
+
+``` r
+library(erratum)
+
+err <- e("This is an error")
+
+l <- Logger$new("ERROR")
+
+l$log(err)
 ```

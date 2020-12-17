@@ -104,6 +104,10 @@ Logger <- R6::R6Class(
       cbs <- unlist(cbs)
       cbs <- paste(cbs, collapse = " ")
 
+      # support erratum
+      if(inherits(msg, "Issue"))
+        msg <- msg$message
+      
       # prefix
       msg_return <- paste(private$.prefix, private$.sep, cbs, msg, "\n")
       msg_print <- msg_return

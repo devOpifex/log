@@ -138,3 +138,17 @@ Finally you can dump the log to a file with `dump`.
 ```r
 log$dump("stuff.log")
 ```
+
+## Erratum
+
+The package supports [erratum](https://github.com/devOpifex/erratum) so one can easily log errors and warnings.
+
+```r
+library(erratum)
+
+err <- e("This is an error")
+
+l <- Logger$new("ERROR")
+
+l$log(err)
+```
