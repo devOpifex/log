@@ -87,8 +87,8 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     19-12-2020 12:41:04 Oh no 
-#> ERROR     19-12-2020 12:41:05 Snap!
+#> ERROR     19-12-2020 13:17:38 Oh no 
+#> ERROR     19-12-2020 13:17:38 Snap!
 ```
 
 Flags available:
@@ -123,8 +123,8 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     12:41:05 [README.md] t|v|f Oh no 
-#> ERROR     12:41:06 [README.md] e|f|q Snap!
+#> ERROR     13:17:38 [README.md] i|s|e Oh no 
+#> ERROR     13:17:39 [README.md] n|b|a Snap!
 ```
 
 ## Hook
@@ -174,6 +174,34 @@ server <- function(input, output, session){
 }
 
 logApp(ui, server)
+```
+
+## Plumber
+
+Use `prLog` to run a plumber API that logs requests, their paths,
+latency, and more.
+
+``` r
+#* Increment a counter
+#* @get /
+function() {
+  return("Hello titan!")
+}
+
+#* Plot a histogram
+#* @serializer png
+#* @get /plot
+function() {
+  rand <- rnorm(100)
+  hist(rand)
+}
+```
+
+``` r
+library(plumber) 
+     
+log::prLog("test.R") %>%  
+  pr_run() 
 ```
 
 ## Erratum

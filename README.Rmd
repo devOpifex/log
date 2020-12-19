@@ -165,6 +165,34 @@ server <- function(input, output, session){
 logApp(ui, server)
 ```
 
+## Plumber
+
+Use `prLog` to run a plumber API that logs requests, their paths, latency, and more.
+
+```r
+#* Increment a counter
+#* @get /
+function() {
+  return("Hello titan!")
+}
+
+#* Plot a histogram
+#* @serializer png
+#* @get /plot
+function() {
+  rand <- rnorm(100)
+  hist(rand)
+}
+```
+
+```r
+library(plumber) 
+     
+log::prLog("test.R") %>%  
+  pr_run() 
+```
+
+
 ## Erratum
 
 The package supports [erratum](https://github.com/devOpifex/erratum) so one can easily log errors and warnings.

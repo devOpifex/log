@@ -7,12 +7,23 @@
 #' as passed to [shiny::shinyApp()].
 #' @param ... Any other arguments passed to [shiny::shinyApp()].
 #' @param inputs Logger to log inputs, set to `NULL` to not log.
+#' @param app Shiny application as returned by [shiny::shinyApp()].
+#' 
+#' @name shiny
 #' 
 #' @export 
-logApp <- function(ui, server, ..., inputs = logInputs){
+logApp <- function(ui, server, ..., inputs = inputLogger){
   checkInstalled("shiny")
 
   app <- shiny::shinyApp(ui, server, ...)
+
+  shinyWithLog(app, inputs)
+
+}
+
+#' @rdname shiny
+#' @export
+shinyWithLog <- function(app, inputs = inputLogger){
 
   if(!is.log(inputs) && !is.null(inputs))
     stop("`inputs` must be a logger", call. = FALSE)
@@ -50,7 +61,6 @@ logApp <- function(ui, server, ..., inputs = logInputs){
   }
 
   app
-
 }
 
 #' Input logger
@@ -58,4 +68,4 @@ logApp <- function(ui, server, ..., inputs = logInputs){
 #' Default logger used to log inputs in [logApp()].
 #' 
 #' @export 
-logInputs <- Logger$new("INPUT")$date()$time()
+inputLogger <- Logger$new("INPUT")$date()$time()

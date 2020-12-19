@@ -1,6 +1,6 @@
 Package: log
 Title: Log Events and Issues
-Version: 1.0.0
+Version: 1.1.0.9000
 Authors@R: 
     c(
     person(given = "John",
@@ -21,4 +21,5 @@ Imports:
   R6
 Suggests:
   crayon,
-  shiny
+  shiny,
+  plumber
