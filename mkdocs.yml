@@ -2,6 +2,8 @@ site_name: log
 
 theme:
   name: material
+  logo: log.png
+  favicon: log.png
   palette:
     scheme: slate
     primary: lime
