@@ -20,4 +20,5 @@ RoxygenNote: 7.1.1.9000
 Imports:
   R6
 Suggests:
-    crayon
+  crayon,
+  shiny

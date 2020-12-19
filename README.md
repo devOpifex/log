@@ -87,8 +87,8 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     17-12-2020 22:18:41 Oh no 
-#> ERROR     17-12-2020 22:18:41 Snap!
+#> ERROR     19-12-2020 12:41:04 Oh no 
+#> ERROR     19-12-2020 12:41:05 Snap!
 ```
 
 Flags available:
@@ -123,8 +123,8 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     22:18:41 [README.md] g|e|w Oh no 
-#> ERROR     22:18:42 [README.md] x|c|q Snap!
+#> ERROR     12:41:05 [README.md] t|v|f Oh no 
+#> ERROR     12:41:06 [README.md] e|f|q Snap!
 ```
 
 ## Hook
@@ -152,6 +152,28 @@ Finally you can dump the log to a file with `dump`.
 
 ``` r
 log$dump("stuff.log")
+```
+
+## Shiny
+
+You can log shiny-related events with `logApp`, by default it will log
+inputs and their values, this can be changed, customised or turned off.
+
+``` r
+library(log)
+library(shiny)
+
+ui <- fluidPage(
+  h1("hello"),
+  actionButton("hello", "world"),
+  dateRangeInput("date", "Date"),
+  selectInput("sel", "Select", choice = letters)
+)
+
+server <- function(input, output, session){
+}
+
+logApp(ui, server)
 ```
 
 ## Erratum

@@ -103,8 +103,16 @@ Logger <- R6::R6Class(
       invisible(self)
     },
 #' @details Log messages
-#' @param msg Message to log
-    log = function(msg = ""){
+#' @param ... Elements to compose message.
+#' @param sep,collapse Separators passed to [paste()].
+    log = function(..., sep = " ", collapse = " "){
+
+      # support erratum
+      if(inherits(list(...)[[1]], "Issue"))
+        msg <- list(...)[[1]]$message
+      else
+        msg <- paste(..., sep = sep, collapse = collapse)
+
       # run callbacks
       cbs <- lapply(private$.callbacks, function(cb){
         cb()
@@ -112,10 +120,6 @@ Logger <- R6::R6Class(
 
       cbs <- unlist(cbs)
       cbs <- paste(cbs, collapse = " ")
-
-      # support erratum
-      if(inherits(msg, "Issue"))
-        msg <- msg$message
       
       # prefix
       msg_return <- paste(private$.prefix, private$.sep, cbs, msg, "\n")
@@ -150,6 +154,27 @@ Logger <- R6::R6Class(
   )
 )
 
+#' Cleans Message for print
+#' 
+#' @param msg Message string.
+#' 
+#' @noRd 
+#' @keywords internal
 clean_msg <- function(msg){
   gsub("\\n", "", msg)
+}
+
+#' Log Check
+#' 
+#' @param obj Object to check.
+#' 
+#' @return `TRUE` if object is a logger,
+#' and `FALSE` otherwise.
+#' 
+#' @export 
+is.log <- function(obj){
+  if(inherits(obj, "Logger"))
+    return(TRUE)
+
+  FALSE
 }

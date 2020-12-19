@@ -189,13 +189,15 @@ Pass a custom flag
 \if{latex}{\out{\hypertarget{method-log}{}}}
 \subsection{Method \code{log()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Logger$log(msg = "")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Logger$log(..., sep = " ", collapse = " ")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{msg}}{Message to log}
+\item{\code{...}}{Elements to compose message.}
+
+\item{\code{sep, collapse}}{Separators passed to \code{\link[=paste]{paste()}}.}
 }
 \if{html}{\out{</div>}}
 }
