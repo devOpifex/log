@@ -154,7 +154,9 @@ Logger <- R6::R6Class(
   )
 )
 
-#' Cleans Message for print
+#' Clean Message
+#' 
+#' Clean message for writing to file.
 #' 
 #' @param msg Message string.
 #' 
