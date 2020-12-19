@@ -4,3 +4,5 @@
 ^CODE_OF_CONDUCT\.md$
 ^\.travis\.yml$
 ^\.github$
+^mkdocs\.yml$
+^docs$
