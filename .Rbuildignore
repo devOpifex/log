@@ -6,3 +6,4 @@
 ^\.github$
 ^mkdocs\.yml$
 ^docs$
+site
