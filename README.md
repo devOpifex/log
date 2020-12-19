@@ -3,6 +3,9 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.com/devOpifex/log.svg?branch=master)](https://travis-ci.com/devOpifex/log)
+[![R-CMD-check](https://github.com/devOpifex/log/workflows/R-CMD-check/badge.svg)](https://github.com/devOpifex/log/actions)
 <!-- badges: end -->
 
 # log
@@ -87,8 +90,8 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     19-12-2020 13:17:38 Oh no 
-#> ERROR     19-12-2020 13:17:38 Snap!
+#> ERROR     19-12-2020 17:29:02 Oh no 
+#> ERROR     19-12-2020 17:29:03 Snap!
 ```
 
 Flags available:
@@ -123,8 +126,8 @@ fnc <- function() {
 }
 
 fnc()
-#> ERROR     13:17:38 [README.md] i|s|e Oh no 
-#> ERROR     13:17:39 [README.md] n|b|a Snap!
+#> ERROR     17:29:03 [README.md] w|e|g Oh no 
+#> ERROR     17:29:04 [README.md] u|p|n Snap!
 ```
 
 ## Hook
@@ -218,3 +221,9 @@ l <- Logger$new("ERROR")
 
 l$log(err)
 ```
+
+## Code of Conduct
+
+Please note that the log project is released with a [Contributor Code of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
