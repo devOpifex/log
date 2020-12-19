@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<div data-align="center">
+<div align="center">
 
 <img src="docs/log.png" height="200px" />
 
@@ -9,6 +9,8 @@
 
 [![R-CMD-check](https://github.com/devOpifex/log/workflows/R-CMD-check/badge.svg)](https://github.com/devOpifex/log/actions)
 <!-- badges: end -->
+
+[Docs](https://log.opifex.org)
 
 A logger for R inspired by go’s standard library log package.
 
