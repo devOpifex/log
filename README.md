@@ -16,6 +16,18 @@ A logger for R inspired by go’s standard library log package.
 
 </div>
 
+## Example
+
+```r
+log <- Logger$new(prefix = "INFO")
+
+log$log("Something")
+#> INFO       Something 
+
+log$log("Something else")
+#> INFO       Something else
+```
+
 ## Code of Conduct
 
 Please note that the log project is released with a [Contributor Code of
