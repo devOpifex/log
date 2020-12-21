@@ -135,3 +135,26 @@ log$printer <- cli::cli_li
 log$log("{.val something}")
 #> ● PRINTER something
 ```
+
+## Predicate
+
+The `predicate` field allows you to pass a predicate function that defines whether the logger actually runs. This very useful when debugging for instance. 
+
+If the predicate function returns `TRUE` then the logger runs, if it returns `FALSE` the logger does not print, write to file, or dump the log.
+
+```r
+log <- Logger$new("TEST")
+log$predicate <- function(){
+  getOption("DEBUG", FALSE)
+}
+
+# FALSE so not running
+log$log("You should not see this")
+
+# set debug to TRUE
+options(DEBUG = TRUE)
+
+log$log("You should now see this")
+#> TEST      You should now see this
+```
+

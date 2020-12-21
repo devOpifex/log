@@ -47,5 +47,5 @@ nav:
     - Plumber: guide/plumber.md
     - Erratum: guide/erratum.md
   - Changelog: misc/changelog.md 
-  - Code of Conduct: misc/coc.md
   - License: misc/license.md
+  - Code of Conduct: misc/coc.md

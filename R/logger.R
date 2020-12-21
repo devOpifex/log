@@ -22,6 +22,14 @@ Logger <- R6::R6Class(
 #' to the console, must accept a single argument, 
 #' defaults to `cat`.
     printer = NA,
+#' @field predicate A predicate function that determines whether
+#' to actually run the log, useful if you want to switch the 
+#' logger on and off for debugging. 
+#' 
+#' If the function returns `TRUE` the logger runs as normal, 
+#' if `FALSE` the logger does not actually print, write or 
+#' dump the messages.
+    predicate = NA,
 #' @details Initialise
 #' 
 #' @param prefix String to prefix all log messages.
@@ -36,6 +44,9 @@ Logger <- R6::R6Class(
       private$.write <- write
       private$.sep <- sep
       self$printer <- cli::cat_line
+      self$predicate <- function(){
+        TRUE
+      }
     },
 #' @details Include the date in the log
 #' @param format Formatter for the item, passed
@@ -114,6 +125,9 @@ Logger <- R6::R6Class(
 #' @param sep,collapse Separators passed to [paste()].
     log = function(..., sep = " ", collapse = " "){
 
+      if(!self$predicate())
+        return(invisible())
+
       # support erratum
       if(inherits(list(...)[[1]], "Issue"))
         msg <- list(...)[[1]]$message
@@ -146,6 +160,9 @@ Logger <- R6::R6Class(
 #' @details Dump the log to a file
 #' @param file Name of the file to dump the logs to.
     dump = function(file = "dump.log"){
+      if(!self$predicate())
+        return(invisible())
+      
       log <- sapply(private$.log, clean_msg)
       writeLines(log, file)
     }
@@ -155,7 +172,7 @@ Logger <- R6::R6Class(
     .prefixHook = NULL,
     .callbacks = list(),
     .log = c(),
-    .file = "log.txt",
+    .file = "log.log",
     .write = FALSE,
     .sep = "\t"
   )

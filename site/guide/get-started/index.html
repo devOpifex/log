@@ -303,6 +303,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#predicate" class="md-nav__link">
+    Predicate
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -381,8 +388,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../misc/coc/" class="md-nav__link">
-      Code of Conduct
+    <a href="../../misc/license/" class="md-nav__link">
+      License
     </a>
   </li>
 
@@ -393,8 +400,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../misc/license/" class="md-nav__link">
-      License
+    <a href="../../misc/coc/" class="md-nav__link">
+      Code of Conduct
     </a>
   </li>
 
@@ -460,6 +467,13 @@
         <li class="md-nav__item">
   <a href="#printer" class="md-nav__link">
     Printer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predicate" class="md-nav__link">
+    Predicate
   </a>
   
 </li>
@@ -661,6 +675,37 @@
 
 <span class="n">log</span><span class="o">$</span><span class="nf">log</span><span class="p">(</span><span class="s">&quot;{.val something}&quot;</span><span class="p">)</span>
 <span class="c1">#&gt; ● PRINTER something</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="predicate">Predicate<a class="headerlink" href="#predicate" title="Permanent link">&para;</a></h2>
+<p>The <code>predicate</code> field allows you to pass a predicate function that defines whether the logger actually runs. This very useful when debugging for instance. </p>
+<p>If the predicate function returns <code>TRUE</code> then the logger runs, if it returns <code>FALSE</code> the logger does not print, write to file, or dump the log.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">log</span> <span class="o">&lt;-</span> <span class="n">Logger</span><span class="o">$</span><span class="nf">new</span><span class="p">(</span><span class="s">&quot;TEST&quot;</span><span class="p">)</span>
+<span class="n">log</span><span class="o">$</span><span class="n">predicate</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span>
+  <span class="nf">getOption</span><span class="p">(</span><span class="s">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># FALSE so not running</span>
+<span class="n">log</span><span class="o">$</span><span class="nf">log</span><span class="p">(</span><span class="s">&quot;You should not see this&quot;</span><span class="p">)</span>
+
+<span class="c1"># set debug to TRUE</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">log</span><span class="o">$</span><span class="nf">log</span><span class="p">(</span><span class="s">&quot;You should now see this&quot;</span><span class="p">)</span>
+<span class="c1">#&gt; TEST      You should now see this</span>
 </code></pre></div>
 </td></tr></table>
                 

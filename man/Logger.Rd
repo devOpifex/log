@@ -23,6 +23,14 @@ infoLog$log("World")
 \item{\code{printer}}{A callback function to write the message
 to the console, must accept a single argument,
 defaults to \code{cat}.}
+
+\item{\code{predicate}}{A predicate function that determines whether
+to actually run the log, useful if you want to switch the
+logger on and off for debugging.
+
+If the function returns \code{TRUE} the logger runs as normal,
+if \code{FALSE} the logger does not actually print, write or
+dump the messages.}
 }
 \if{html}{\out{</div>}}
 }
