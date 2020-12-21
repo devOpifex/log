@@ -5,7 +5,7 @@
 \alias{inputLogger}
 \title{Input logger}
 \format{
-An object of class \code{Logger} (inherits from \code{R6}) of length 12.
+An object of class \code{Logger} (inherits from \code{R6}) of length 13.
 }
 \usage{
 inputLogger

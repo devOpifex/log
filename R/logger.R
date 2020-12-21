@@ -1,6 +1,8 @@
 #' Logger
 #' 
-#' Create a logger
+#' Create a logger.
+#' 
+#' @importFrom crayon blurred
 #' 
 #' @examples 
 #' infoLog <- Logger$new("INFO")$
@@ -16,6 +18,10 @@
 Logger <- R6::R6Class(
   "Logger",
   public = list(
+#' @field printer A callback function to write the message
+#' to the console, must accept a single argument, 
+#' defaults to `cat`.
+    printer = NA,
 #' @details Initialise
 #' 
 #' @param prefix String to prefix all log messages.
@@ -29,13 +35,14 @@ Logger <- R6::R6Class(
       private$.file <- file
       private$.write <- write
       private$.sep <- sep
+      self$printer <- cli::cat_line
     },
 #' @details Include the date in the log
 #' @param format Formatter for the item, passed
 #' to [format()].
     date = function(format = "%d-%m-%Y"){
       callback <- function(){
-        format(Sys.Date(), format = format)
+        blurred(format(Sys.Date(), format = format))
       }
 
       private$.callbacks <- append(private$.callbacks, callback)
@@ -46,7 +53,7 @@ Logger <- R6::R6Class(
 #' to [format()].
     time = function(format = "%H:%M:%S"){
       callback <- function(){
-        format(Sys.time(), format = format)
+        blurred(format(Sys.time(), format = format))
       }
 
       private$.callbacks <- append(private$.callbacks, callback)
@@ -122,12 +129,12 @@ Logger <- R6::R6Class(
       cbs <- paste(cbs, collapse = " ")
       
       # prefix
-      msg_return <- paste(private$.prefix, private$.sep, cbs, msg, "\n")
+      msg_return <- paste(private$.prefix, private$.sep, cbs, msg)
       msg_print <- msg_return
       if(!is.null(private$.prefixHook))
-        msg_print <- paste(private$.prefixHook(private$.prefix), private$.sep, cbs, msg, "\n")
+        msg_print <- paste(private$.prefixHook(private$.prefix), private$.sep, cbs, msg)
 
-      cat(msg_print)
+      self$printer(msg_print)
 
       if(private$.write)
         write(clean_msg(msg_return), private$.file, append = TRUE)

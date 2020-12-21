@@ -296,10 +296,29 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#printer" class="md-nav__link">
+    Printer
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../templates/" class="md-nav__link">
+      Templates
+    </a>
   </li>
 
         
@@ -438,6 +457,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#printer" class="md-nav__link">
+    Printer
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -545,7 +571,10 @@
 <li><code>unix</code> - unix timestamp</li>
 <li><code>wd</code> - working directory</li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>You can also customise the look of the prefix with <code>hook</code>, pass it a function that will take the prefix and return a modified version of it.</p>
+</div>
 <p>While the package comes with basic flags you can add your own with the <code>flag</code> method. This method accepts either a function that will be run every time a message is logged or a string that will simply be included in the message.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -597,7 +626,7 @@
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># using crayon</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># using crayon to write the entire line red</span>
 <span class="n">errorLog</span> <span class="o">&lt;-</span> <span class="n">errorLog</span><span class="o">$</span><span class="nf">hook</span><span class="p">(</span><span class="n">crayon</span><span class="o">::</span><span class="n">red</span><span class="p">)</span>
 
 <span class="c1"># fancier</span>
@@ -611,9 +640,27 @@
 </code></pre></div>
 </td></tr></table>
 
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The package comes with default loggers, see <a href="/guide/templates">templates</a></p>
+</div>
 <h2 id="dump">Dump<a class="headerlink" href="#dump" title="Permanent link">&para;</a></h2>
 <p>Finally you can dump the log to a file with <code>dump</code>.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">log</span><span class="o">$</span><span class="nf">dump</span><span class="p">(</span><span class="s">&quot;stuff.log&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="printer">Printer<a class="headerlink" href="#printer" title="Permanent link">&para;</a></h2>
+<p>By default log uses <code>cli::cat_cli</code> to print the messages, this can be changed via the <code>printer</code> field. It accepts a function that will be used to print messages, this function must accept a single argument: the message.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">log</span> <span class="o">&lt;-</span> <span class="n">Logger</span><span class="o">$</span><span class="nf">new</span><span class="p">(</span><span class="s">&quot;PRINTER&quot;</span><span class="p">)</span>
+<span class="n">log</span><span class="o">$</span><span class="n">printer</span> <span class="o">&lt;-</span> <span class="n">cli</span><span class="o">::</span><span class="n">cli_li</span>
+
+<span class="n">log</span><span class="o">$</span><span class="nf">log</span><span class="p">(</span><span class="s">&quot;{.val something}&quot;</span><span class="p">)</span>
+<span class="c1">#&gt; ● PRINTER something</span>
 </code></pre></div>
 </td></tr></table>
                 
@@ -649,13 +696,13 @@
           </a>
         
         
-          <a href="../shiny/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../templates/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Shiny
+                Templates
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

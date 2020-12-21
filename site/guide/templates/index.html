@@ -18,7 +18,7 @@
     
     
       
-        <title>Shiny - log</title>
+        <title>Templates - log</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shiny" class="md-skip">
+        <a href="#templates" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Shiny
+              Templates
             
           </span>
         </div>
@@ -241,18 +241,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../templates/" class="md-nav__link">
-      Templates
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -264,9 +252,21 @@
     
     
     <a href="./" class="md-nav__link md-nav__link--active">
-      Shiny
+      Templates
     </a>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../shiny/" class="md-nav__link">
+      Shiny
+    </a>
   </li>
 
         
@@ -362,13 +362,19 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/devOpifex/log/edit/master/docs/guide/shiny.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/devOpifex/log/edit/master/docs/guide/templates.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="shiny">Shiny<a class="headerlink" href="#shiny" title="Permanent link">&para;</a></h1>
-<p>You can log shiny-related events with <code>logApp</code>, by default it will log inputs and their values, this can be changed, customised or turned off.</p>
+                <h1 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h1>
+<p>The packages comes with four template loggers to log different types of information:</p>
+<ul>
+<li>Info</li>
+<li>Error</li>
+<li>Warning</li>
+<li>Success</li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -382,31 +388,33 @@
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">log</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">foo</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span>
+  <span class="n">info</span> <span class="o">&lt;-</span> <span class="nf">infoLog</span><span class="p">()</span>
+  <span class="n">error</span> <span class="o">&lt;-</span> <span class="nf">errorLog</span><span class="p">()</span>
+  <span class="n">warn</span> <span class="o">&lt;-</span> <span class="nf">warnLog</span><span class="p">()</span>
+  <span class="n">success</span> <span class="o">&lt;-</span> <span class="nf">successLog</span><span class="p">()</span>
 
-<span class="n">ui</span> <span class="o">&lt;-</span> <span class="nf">fluidPage</span><span class="p">(</span>
-  <span class="nf">h1</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">),</span>
-  <span class="nf">actionButton</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">,</span> <span class="s">&quot;world&quot;</span><span class="p">),</span>
-  <span class="nf">dateRangeInput</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">,</span> <span class="s">&quot;Date&quot;</span><span class="p">),</span>
-  <span class="nf">selectInput</span><span class="p">(</span><span class="s">&quot;sel&quot;</span><span class="p">,</span> <span class="s">&quot;Select&quot;</span><span class="p">,</span> <span class="n">choice</span> <span class="o">=</span> <span class="kc">letters</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">server</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">session</span><span class="p">){</span>
+  <span class="n">info</span><span class="o">$</span><span class="nf">log</span><span class="p">(</span><span class="s">&quot;Some information&quot;</span><span class="p">)</span>
+  <span class="n">error</span><span class="o">$</span><span class="nf">log</span><span class="p">(</span><span class="s">&quot;An error occurred&quot;</span><span class="p">)</span>
+  <span class="n">warn</span><span class="o">$</span><span class="nf">log</span><span class="p">(</span><span class="s">&quot;A warning was raised&quot;</span><span class="p">)</span>
+  <span class="n">success</span><span class="o">$</span><span class="nf">log</span><span class="p">(</span><span class="s">&quot;It went well!&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="nf">logApp</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+<span class="nf">foo</span><span class="p">()</span>
+<span class="c1">#&gt; ℹ INFO           21-12-2020 20:10:52 Some information</span>
+<span class="c1">#&gt; ✖ ERROR          21-12-2020 20:10:52 An error occurred</span>
+<span class="c1">#&gt; ⚠ WARNING        21-12-2020 20:10:52 A warning was raised</span>
+<span class="c1">#&gt; ✔ SUCCESS        21-12-2020 20:10:52 It went well!</span>
 </code></pre></div>
 </td></tr></table>
 
-<p>If you are using a package that already modifies the application (e.g.: <a href="https://titan.opifex.org">titan</a>) and cannot use <code>logApp</code>, you can use <code>shinyWithLog</code> instead.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nf">shinyWithLog</span><span class="p">(</span>
-  <span class="n">titan</span><span class="o">::</span><span class="nf">titanApp</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
-<span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above prints with colors via <code>cli</code>.</p>
+</div>
                 
               
               
@@ -425,7 +433,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../templates/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../get-started/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -434,19 +442,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Templates
+                Get Started
               </div>
             </div>
           </a>
         
         
-          <a href="../plumber/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../shiny/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Plumber
+                Shiny
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

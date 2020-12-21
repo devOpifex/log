@@ -4,7 +4,7 @@
 \alias{Logger}
 \title{Logger}
 \description{
-Create a logger
+Create a logger.
 }
 \examples{
 infoLog <- Logger$new("INFO")$
@@ -16,6 +16,15 @@ infoLog$log("Hello")
 Sys.sleep(.7)
 infoLog$log("World")
 
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{printer}}{A callback function to write the message
+to the console, must accept a single argument,
+defaults to \code{cat}.}
+}
+\if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{

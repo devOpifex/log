@@ -69,7 +69,8 @@ Flags available:
 - `unix` - unix timestamp
 - `wd` - working directory
 
-You can also customise the look of the prefix with `hook`, pass it a function that will take the prefix and return a modified version of it.
+!!! tip 
+    You can also customise the look of the prefix with `hook`, pass it a function that will take the prefix and return a modified version of it.
 
 While the package comes with basic flags you can add your own with the `flag` method. This method accepts either a function that will be run every time a message is logged or a string that will simply be included in the message.
 
@@ -99,7 +100,7 @@ fnc()
 There is also the possibility to pass a "hook;" a function that will preprocess the prefix and return a modified version of it.
 
 ```r
-# using crayon
+# using crayon to write the entire line red
 errorLog <- errorLog$hook(crayon::red)
 
 # fancier
@@ -112,10 +113,25 @@ log$log("Fancy this!?")
 #> ℹ INFO     Fancy this!?
 ```
 
+!!! tip
+    The package comes with default loggers, see [templates](/guide/templates)
+
 ## Dump
 
 Finally you can dump the log to a file with `dump`.
 
 ```r
 log$dump("stuff.log")
+```
+
+## Printer
+
+By default log uses `cli::cat_cli` to print the messages, this can be changed via the `printer` field. It accepts a function that will be used to print messages, this function must accept a single argument: the message.
+
+```r
+log <- Logger$new("PRINTER")
+log$printer <- cli::cli_li
+
+log$log("{.val something}")
+#> ● PRINTER something
 ```
