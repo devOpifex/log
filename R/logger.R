@@ -38,14 +38,31 @@ Logger <- R6::R6Class(
 #' @param write Whether to write the log to the `file`.
 #' @param sep Separator between `prefix` and other flags 
 #' and messages.
-    initialize = function(prefix = "", write = FALSE, file = "log.log", sep = "\t"){
-      private$.prefix <- prefix
+    initialize = function(prefix = NULL, write = FALSE, file = "log.log", sep = "\t"){
+      
+      callback <- function(prefix, sep){
+        if(is.null(prefix))
+          sep <- ""
+
+        if(is.null(prefix))
+          prefix <- ""
+
+        pref <- sprintf("%s%s", prefix, sep)
+        function(){
+          private$.prefixHook(pref)
+        }
+      }
+
+      private$.callbacks <- list(callback(prefix, sep))
+
       private$.file <- file
       private$.write <- write
-      private$.sep <- sep
       self$printer <- cli::cat_line
       self$predicate <- function(){
         TRUE
+      }
+      private$.prefixHook <- function(prefix){
+        return(prefix)
       }
     },
 #' @details Include the date in the log
@@ -73,16 +90,7 @@ Logger <- R6::R6Class(
 #' @details Include the time in the log
     unix = function(){
       callback <- function(){
-        as.numeric(Sys.time())
-      }
-
-      private$.callbacks <- append(private$.callbacks, callback)
-      invisible(self)
-    },
-#' @details Include the working directory
-    wd = function(){
-      callback <- function(){
-        getwd()
+        blurred(as.numeric(Sys.time()))
       }
 
       private$.callbacks <- append(private$.callbacks, callback)
@@ -99,7 +107,7 @@ Logger <- R6::R6Class(
 #' @details Include the directory in the log
     dir = function(){
       callback <- function(){
-        getwd()
+        blurred(getwd())
       }
 
       private$.callbacks <- append(private$.callbacks, callback)
@@ -135,19 +143,14 @@ Logger <- R6::R6Class(
         msg <- paste(..., sep = sep, collapse = collapse)
 
       # run callbacks
-      cbs <- lapply(private$.callbacks, function(cb){
-        cb()
-      })
-
-      cbs <- unlist(cbs)
+      cbs <- sapply(private$.callbacks, function(fn) fn())
       cbs <- paste(cbs, collapse = " ")
       
       # prefix
-      msg_return <- paste(private$.prefix, private$.sep, cbs, msg)
+      msg_return <- paste(cbs, msg, collapse = " ")
+      msg_return <- trimws(msg_return)
       msg_print <- msg_return
-      if(!is.null(private$.prefixHook))
-        msg_print <- paste(private$.prefixHook(private$.prefix), private$.sep, cbs, msg)
-
+      
       self$printer(msg_print)
 
       if(private$.write)
@@ -168,13 +171,11 @@ Logger <- R6::R6Class(
     }
   ),
   private = list(
-    .prefix = "",
     .prefixHook = NULL,
     .callbacks = list(),
     .log = c(),
     .file = "log.log",
-    .write = FALSE,
-    .sep = "\t"
+    .write = FALSE
   )
 )
 

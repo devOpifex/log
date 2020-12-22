@@ -47,14 +47,14 @@ When setting up the logger one can customise it with "flags" so it includes a bi
 The date and time format can be customised with the `format` argument.
 
 ```r
-errorLog <- Logger$new("ERROR")$
+logError <- Logger$new("ERROR")$
   date()$
   time()
 
 fnc <- function() {
-  errorLog$log("Oh no")
+  logError$log("Oh no")
   Sys.sleep(.7)
-  errorLog$log("Snap!")
+  logError$log("Snap!")
 }
 
 fnc()
@@ -101,7 +101,10 @@ There is also the possibility to pass a "hook;" a function that will preprocess 
 
 ```r
 # using crayon to write the entire line red
-errorLog <- errorLog$hook(crayon::red)
+logError$hook(crayon::red)
+
+logError$log("Whoops!")
+#> ERROR     19-12-2020 17:29:02 Whoops!
 
 # fancier
 hook <- function(x) {
