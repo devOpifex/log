@@ -45,6 +45,7 @@ nav:
     - Templates: guide/templates.md
     - Shiny: guide/shiny.md
     - Plumber: guide/plumber.md
+    - Ambiorix: guide/ambiorix.md
     - Erratum: guide/erratum.md
   - Changelog: misc/changelog.md 
   - License: misc/license.md

@@ -10,4 +10,5 @@ err <- e("This is an error")
 l <- Logger$new("ERROR")
 
 l$log(err)
+#> ERROR    This is an error
 ```
