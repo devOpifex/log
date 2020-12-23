@@ -25,7 +25,7 @@ errorLog <- function(prefix = "ERROR"){
 
 #' @rdname templates
 #' @export 
-warnLog <- function(prefix = "WARNING"){
+warningLog <- function(prefix = "WARNING"){
   prefix <- yellow(symbol$warning, prefix)
 
   Logger$new(prefix)$date()$time()

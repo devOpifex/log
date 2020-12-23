@@ -136,6 +136,9 @@ Logger <- R6::R6Class(
       if(!self$predicate())
         return(invisible())
 
+      if(length(list(...)) == 0)
+        return(invisible())
+
       # support erratum
       if(inherits(list(...)[[1]], "Issue"))
         msg <- list(...)[[1]]$message

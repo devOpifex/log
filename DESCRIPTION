@@ -22,5 +22,8 @@ Imports:
   cli,
   crayon
 Suggests:
-  shiny,
-  plumber
+    shiny,
+    plumber,
+    testthat (>= 3.0.0),
+    covr
+Config/testthat/edition: 3

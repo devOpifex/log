@@ -11,7 +11,7 @@ The packages comes with four template loggers to log different types of informat
 foo <- function(){
   info <- infoLog()
   error <- errorLog()
-  warn <- warnLog()
+  warn <- warningLog()
   success <- successLog()
 
   info$log("Some information")

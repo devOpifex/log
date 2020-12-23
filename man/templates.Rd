@@ -4,7 +4,7 @@
 \alias{templates}
 \alias{infoLog}
 \alias{errorLog}
-\alias{warnLog}
+\alias{warningLog}
 \alias{successLog}
 \title{Template Loggers}
 \usage{
@@ -12,7 +12,7 @@ infoLog(prefix = "INFO")
 
 errorLog(prefix = "ERROR")
 
-warnLog(prefix = "WARNING")
+warningLog(prefix = "WARNING")
 
 successLog(prefix = "SUCCESS")
 }

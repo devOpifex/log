@@ -8,6 +8,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/devOpifex/log/workflows/R-CMD-check/badge.svg)](https://github.com/devOpifex/log/actions)
+[![Coveralls test coverage](https://coveralls.io/repos/github/devOpifex/log/badge.svg)](https://coveralls.io/r/devOpifex/log?branch=master)
+[![Travis build status](https://travis-ci.com/devOpifex/log.svg?branch=master)](https://travis-ci.com/devOpifex/log)
 <!-- badges: end -->
 
 [Docs](https://log.opifex.org)
