@@ -25,4 +25,12 @@ test_that("Logger", {
     })
 
   expect_output(hook$log("hello"), "HOOK hello")
+
+  pred <- function(){
+    return(FALSE)
+  }
+
+  bare$predicate <- pred
+
+  expect_null(bare$log("nothing"))
 })
