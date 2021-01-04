@@ -1,5 +1,5 @@
 Package: log
-Title: Log Events and Issues
+Title: Record Events and Issues
 Version: 1.1.0
 Authors@R: 
     c(
