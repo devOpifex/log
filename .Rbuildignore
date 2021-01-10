@@ -7,3 +7,5 @@
 ^mkdocs\.yml$
 ^docs$
 site
+^cran-comments\.md$
+^CRAN-RELEASE$
