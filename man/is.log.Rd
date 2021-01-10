@@ -16,3 +16,8 @@ and \code{FALSE} otherwise.
 \description{
 Log Check
 }
+\examples{
+info <- Logger$new("INFO")
+is.log(info)
+
+}

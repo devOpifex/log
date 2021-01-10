@@ -10,7 +10,6 @@
 #' @param app Shiny application as returned by [shiny::shinyApp()].
 #' 
 #' @name shiny
-#' 
 #' @export 
 logApp <- function(ui, server, ..., inputs = inputLogger){
   checkInstalled("shiny")

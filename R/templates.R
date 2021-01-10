@@ -7,6 +7,10 @@
 #' @importFrom crayon blue red green yellow
 #' @importFrom cli symbol
 #' 
+#' @examples 
+#' info <- infoLog()
+#' info$log("Information")
+#' 
 #' @name templates
 #' @export 
 infoLog <- function(prefix = "INFO"){

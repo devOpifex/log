@@ -22,3 +22,8 @@ successLog(prefix = "SUCCESS")
 \description{
 Template loggers for convenience.
 }
+\examples{
+info <- infoLog()
+info$log("Information")
+
+}

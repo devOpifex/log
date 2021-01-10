@@ -7,15 +7,83 @@
 Create a logger.
 }
 \examples{
-infoLog <- Logger$new("INFO")$
+info <- Logger$new("INFO")$
  date()$
  time()$
  hook(crayon::blue)
 
-infoLog$log("Hello")
+info$log("Hello")
 Sys.sleep(.7)
-infoLog$log("World")
+info$log("World")
 
+
+## ------------------------------------------------
+## Method `Logger$new`
+## ------------------------------------------------
+
+info <- Logger$new("INFO")
+info$log("hello")
+
+## ------------------------------------------------
+## Method `Logger$date`
+## ------------------------------------------------
+
+info <- Logger$new("INFO")$date()
+info$log("today")
+
+## ------------------------------------------------
+## Method `Logger$time`
+## ------------------------------------------------
+
+info <- Logger$new("INFO")$time()
+info$log("now")
+
+## ------------------------------------------------
+## Method `Logger$unix`
+## ------------------------------------------------
+
+info <- Logger$new("INFO")$unix()
+info$log("timestamp")
+
+## ------------------------------------------------
+## Method `Logger$hook`
+## ------------------------------------------------
+
+err <- Logger$new("INFO")$hook(crayon::red)
+err$log("hello")
+
+## ------------------------------------------------
+## Method `Logger$dir`
+## ------------------------------------------------
+
+info <- Logger$new("INFO")$dir()
+info$log("directory")
+
+## ------------------------------------------------
+## Method `Logger$flag`
+## ------------------------------------------------
+
+fl <- function(){
+ paste0(sample(letters, 4), collapse = "")
+}
+
+info <- Logger$new("INFO")$flag(fl)
+info$log("random")
+
+## ------------------------------------------------
+## Method `Logger$log`
+## ------------------------------------------------
+
+info <- Logger$new("INFO")
+info$log("Logger")
+
+## ------------------------------------------------
+## Method `Logger$dump`
+## ------------------------------------------------
+
+info <- Logger$new("INFO")
+info$log("hello")
+\dontrun{info$dump()}
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
@@ -76,6 +144,15 @@ and messages.}
 Initialise
 }
 
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{info <- Logger$new("INFO")
+info$log("hello")
+}
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-date"></a>}}
@@ -95,6 +172,15 @@ to \code{\link[=format]{format()}}.}
 }
 \subsection{Details}{
 Include the date in the log
+}
+
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{info <- Logger$new("INFO")$date()
+info$log("today")
+}
+\if{html}{\out{</div>}}
+
 }
 
 }
@@ -118,6 +204,15 @@ to \code{\link[=format]{format()}}.}
 Include the time in the log
 }
 
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{info <- Logger$new("INFO")$time()
+info$log("now")
+}
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-unix"></a>}}
@@ -129,6 +224,15 @@ Include the time in the log
 
 \subsection{Details}{
 Include the time in the log
+}
+
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{info <- Logger$new("INFO")$unix()
+info$log("timestamp")
+}
+\if{html}{\out{</div>}}
+
 }
 
 }
@@ -152,6 +256,15 @@ and returns a modified version of that string.}
 Preprocess the prefix with a custom function
 }
 
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{err <- Logger$new("INFO")$hook(crayon::red)
+err$log("hello")
+}
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-dir"></a>}}
@@ -163,6 +276,15 @@ Preprocess the prefix with a custom function
 
 \subsection{Details}{
 Include the directory in the log
+}
+
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{info <- Logger$new("INFO")$dir()
+info$log("directory")
+}
+\if{html}{\out{</div>}}
+
 }
 
 }
@@ -184,6 +306,19 @@ or string to include in log message.}
 }
 \subsection{Details}{
 Pass a custom flag
+}
+
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{fl <- function(){
+ paste0(sample(letters, 4), collapse = "")
+}
+
+info <- Logger$new("INFO")$flag(fl)
+info$log("random")
+}
+\if{html}{\out{</div>}}
+
 }
 
 }
@@ -208,6 +343,15 @@ Pass a custom flag
 Log messages
 }
 
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{info <- Logger$new("INFO")
+info$log("Logger")
+}
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-dump"></a>}}
@@ -226,6 +370,16 @@ Log messages
 }
 \subsection{Details}{
 Dump the log to a file
+}
+
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{info <- Logger$new("INFO")
+info$log("hello")
+\dontrun{info$dump()}
+}
+\if{html}{\out{</div>}}
+
 }
 
 }

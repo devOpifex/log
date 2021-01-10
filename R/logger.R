@@ -5,14 +5,14 @@
 #' @importFrom crayon blurred
 #' 
 #' @examples 
-#' infoLog <- Logger$new("INFO")$
+#' info <- Logger$new("INFO")$
 #'  date()$
 #'  time()$
 #'  hook(crayon::blue)
 #' 
-#' infoLog$log("Hello")
+#' info$log("Hello")
 #' Sys.sleep(.7)
-#' infoLog$log("World")
+#' info$log("World")
 #' 
 #' @export 
 Logger <- R6::R6Class(
@@ -38,6 +38,10 @@ Logger <- R6::R6Class(
 #' @param write Whether to write the log to the `file`.
 #' @param sep Separator between `prefix` and other flags 
 #' and messages.
+#' 
+#' @examples 
+#' info <- Logger$new("INFO")
+#' info$log("hello")
     initialize = function(prefix = NULL, write = FALSE, file = "log.log", sep = "\t"){
       
       callback <- function(prefix, sep){
@@ -68,6 +72,9 @@ Logger <- R6::R6Class(
 #' @details Include the date in the log
 #' @param format Formatter for the item, passed
 #' to [format()].
+#' @examples 
+#' info <- Logger$new("INFO")$date()
+#' info$log("today")
     date = function(format = "%d-%m-%Y"){
       callback <- function(){
         blurred(format(Sys.Date(), format = format))
@@ -79,6 +86,9 @@ Logger <- R6::R6Class(
 #' @details Include the time in the log
 #' @param format Formatter for the item, passed
 #' to [format()].
+#' @examples 
+#' info <- Logger$new("INFO")$time()
+#' info$log("now")
     time = function(format = "%H:%M:%S"){
       callback <- function(){
         blurred(format(Sys.time(), format = format))
@@ -88,6 +98,9 @@ Logger <- R6::R6Class(
       invisible(self)
     },
 #' @details Include the time in the log
+#' @examples 
+#' info <- Logger$new("INFO")$unix()
+#' info$log("timestamp")
     unix = function(){
       callback <- function(){
         blurred(as.numeric(Sys.time()))
@@ -100,11 +113,17 @@ Logger <- R6::R6Class(
 #' 
 #' @param fn A function that accepts one argument (string)
 #' and returns a modified version of that string.
+#' @examples 
+#' err <- Logger$new("INFO")$hook(crayon::red)
+#' err$log("hello")
     hook = function(fn){
       private$.prefixHook <- fn
       invisible(self)
     },
 #' @details Include the directory in the log
+#' @examples 
+#' info <- Logger$new("INFO")$dir()
+#' info$log("directory")
     dir = function(){
       callback <- function(){
         blurred(getwd())
@@ -116,6 +135,13 @@ Logger <- R6::R6Class(
 #' @details Pass a custom flag
 #' @param what Function to run for every message logged
 #' or string to include in log message.
+#' @examples 
+#' fl <- function(){
+#'  paste0(sample(letters, 4), collapse = "")
+#' }
+#' 
+#' info <- Logger$new("INFO")$flag(fl)
+#' info$log("random")
     flag = function(what){
 
       if(!is.function(what))
@@ -131,6 +157,9 @@ Logger <- R6::R6Class(
 #' @details Log messages
 #' @param ... Elements to compose message.
 #' @param sep,collapse Separators passed to [paste()].
+#' @examples 
+#' info <- Logger$new("INFO")
+#' info$log("Logger")
     log = function(..., sep = " ", collapse = " "){
 
       if(!self$predicate())
@@ -165,6 +194,10 @@ Logger <- R6::R6Class(
     },
 #' @details Dump the log to a file
 #' @param file Name of the file to dump the logs to.
+#' @examples 
+#' info <- Logger$new("INFO")
+#' info$log("hello")
+#' \dontrun{info$dump()}
     dump = function(file = "dump.log"){
       if(!self$predicate())
         return(invisible())
@@ -200,6 +233,10 @@ clean_msg <- function(msg){
 #' 
 #' @return `TRUE` if object is a logger,
 #' and `FALSE` otherwise.
+#' 
+#' @examples 
+#' info <- Logger$new("INFO")
+#' is.log(info)
 #' 
 #' @export 
 is.log <- function(obj){

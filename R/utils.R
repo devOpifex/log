@@ -1,3 +1,10 @@
+#' Check Installed
+#' 
+#' Check that package is installed.
+#' 
+#' @param pkg Package name. 
+#' 
+#' @keywords internal
 checkInstalled <- function(pkg){
   has_it <- base::requireNamespace(pkg, quietly = TRUE)
 
