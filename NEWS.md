@@ -1,5 +1,6 @@
 # log 1.1.0
 
+- Hits CRAN
 - Added templates
 - Added `predicate` field to programmatically switch the logger on and off.
 - Fixed issues when `prefix` was not used
