@@ -4,36 +4,17 @@
 
 A convenient logger for R, shiny, and plumber.
 
-[Get Started](/guide/get-started){: .md-button }
+[Get Started](/guide/get-started){: .md-button .md-button--primary }
+[Install](/installation){: .md-button }
 
-## Installation
-
-Titan is not yet available on CRAN, it can be obtained from [Github](https://github.com/devOpifex/titan) in a variety of ways.
-
-### remotes
-
-You can use the `remotes` package.
+## Example
 
 ```r
-# install.packages("remotes")
-remotes::install_github("devOpifex/titan")
+log <- Logger$new(prefix = "INFO")
+
+log$log("Something")
+#> INFO       Something 
+
+log$log("Something else")
+#> INFO       Something else
 ```
-
-### pak
-
-You can use the `pak` package.
-
-```r
-# install.packages("pak")
-pak::pkg_install("devOpifex/titan")
-```
-
-### devtools
-
-You can use the `devtools` package.
-
-```r
-# install.packages("devtools")
-devtools::install_github("devOpifex/titan")
-```
-

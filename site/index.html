@@ -228,36 +228,9 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#example" class="md-nav__link">
+    Example
   </a>
-  
-    <nav class="md-nav" aria-label="Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#remotes" class="md-nav__link">
-    remotes
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pak" class="md-nav__link">
-    pak
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#devtools" class="md-nav__link">
-    devtools
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -273,15 +246,27 @@
       
 
 
+  <li class="md-nav__item">
+    <a href="installation/" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
   <li class="md-nav__item md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
-    <label class="md-nav__link" for="nav-2">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    <label class="md-nav__link" for="nav-3">
       Guide
       <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="Guide" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
+      <label class="md-nav__title" for="nav-3">
         <span class="md-nav__icon md-icon"></span>
         Guide
       </label>
@@ -425,36 +410,9 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#example" class="md-nav__link">
+    Example
   </a>
-  
-    <nav class="md-nav" aria-label="Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#remotes" class="md-nav__link">
-    remotes
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pak" class="md-nav__link">
-    pak
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#devtools" class="md-nav__link">
-    devtools
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -478,30 +436,22 @@
                 <h1 id="log">Log<a class="headerlink" href="#log" title="Permanent link">&para;</a></h1>
 <p><a href="https://github.com/devOpifex/log/actions"><img alt="R-CMD-check" src="https://github.com/devOpifex/log/workflows/R-CMD-check/badge.svg" /></a></p>
 <p>A convenient logger for R, shiny, and plumber.</p>
-<p><a class="md-button" href="/guide/get-started">Get Started</a></p>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>Titan is not yet available on CRAN, it can be obtained from <a href="https://github.com/devOpifex/titan">Github</a> in a variety of ways.</p>
-<h3 id="remotes">remotes<a class="headerlink" href="#remotes" title="Permanent link">&para;</a></h3>
-<p>You can use the <code>remotes</code> package.</p>
+<p><a class="md-button md-button--primary" href="/guide/get-started">Get Started</a>
+<a class="md-button" href="/installation">Install</a></p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># install.packages(&quot;remotes&quot;)</span>
-<span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;devOpifex/titan&quot;</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">log</span> <span class="o">&lt;-</span> <span class="n">Logger</span><span class="o">$</span><span class="nf">new</span><span class="p">(</span><span class="n">prefix</span> <span class="o">=</span> <span class="s">&quot;INFO&quot;</span><span class="p">)</span>
 
-<h3 id="pak">pak<a class="headerlink" href="#pak" title="Permanent link">&para;</a></h3>
-<p>You can use the <code>pak</code> package.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># install.packages(&quot;pak&quot;)</span>
-<span class="n">pak</span><span class="o">::</span><span class="nf">pkg_install</span><span class="p">(</span><span class="s">&quot;devOpifex/titan&quot;</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+<span class="n">log</span><span class="o">$</span><span class="nf">log</span><span class="p">(</span><span class="s">&quot;Something&quot;</span><span class="p">)</span>
+<span class="c1">#&gt; INFO       Something </span>
 
-<h3 id="devtools">devtools<a class="headerlink" href="#devtools" title="Permanent link">&para;</a></h3>
-<p>You can use the <code>devtools</code> package.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># install.packages(&quot;devtools&quot;)</span>
-<span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;devOpifex/titan&quot;</span><span class="p">)</span>
+<span class="n">log</span><span class="o">$</span><span class="nf">log</span><span class="p">(</span><span class="s">&quot;Something else&quot;</span><span class="p">)</span>
+<span class="c1">#&gt; INFO       Something else</span>
 </code></pre></div>
 </td></tr></table>
                 
@@ -523,13 +473,13 @@
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
         
-          <a href="guide/get-started/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="installation/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Get Started
+                Installation
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
