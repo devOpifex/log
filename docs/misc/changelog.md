@@ -1,3 +1,7 @@
+# log 1.1.1.9000
+
+- Correct tab spacing in `errorLog`
+
 # log 1.1.0
 
 - Hits CRAN

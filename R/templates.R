@@ -24,7 +24,7 @@ infoLog <- function(prefix = "INFO"){
 errorLog <- function(prefix = "ERROR"){
   prefix <- red(symbol$cross, prefix)
 
-  Logger$new(prefix)$date()$time()
+  Logger$new(prefix, sep = "\t\t")$date()$time()
 }
 
 #' @rdname templates
