@@ -19,7 +19,7 @@ repo_url: https://github.com/devOpifex/log
 repo_name: Github
 site_description: A convenient logger for R, shiny, and plumber.
 site_author: Opifex
-copyright: Copyright &copy; 2020 Opifex
+copyright: Copyright &copy; 2021 Opifex
 
 google_analytics:
   - G-TZMQ98HS6D
