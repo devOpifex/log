@@ -160,7 +160,7 @@ Logger <- R6::R6Class(
 #' @examples 
 #' info <- Logger$new("INFO")
 #' info$log("Logger")
-    log = function(..., sep = " ", collapse = " "){
+    log = function(..., sep = " ", collapse = " ", prefix = NULL){
 
       if(!self$predicate())
         return(invisible())
@@ -171,11 +171,18 @@ Logger <- R6::R6Class(
       # support erratum
       if(inherits(list(...)[[1]], "Issue"))
         msg <- list(...)[[1]]$message
-      else
-        msg <- paste(..., sep = sep, collapse = collapse)
+        
+      msg <- paste(..., sep = sep, collapse = collapse)
 
       # run callbacks
-      cbs <- sapply(private$.callbacks, function(fn) fn())
+      cbs <- as.list(private$.callbacks)
+      if(!is.null(prefix) && is.function(prefix))
+        cbs[[1]] <- prefix
+
+      if(!is.null(prefix) && !is.function(prefix))
+        cbs[[1]] <- \() prefix
+
+      cbs <- sapply(cbs, function(fn) fn())
       cbs <- paste(cbs, collapse = " ")
       
       # prefix

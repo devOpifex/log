@@ -1,6 +1,7 @@
 # log 1.1.1.9000
 
 - Correct tab spacing in `errorLog`
+- Add `prefix` argument to `log` method to overwrite.
 
 # log 1.1.0
 
