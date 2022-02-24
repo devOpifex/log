@@ -8,7 +8,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/devOpifex/log/workflows/R-CMD-check/badge.svg)](https://github.com/devOpifex/log/actions)
-[![codecov](https://codecov.io/gh/devOpifex/log/branch/master/graph/badge.svg?token=AWAEDORHEU)](https://codecov.io/gh/devOpifex/log)
+[![codecov](https://codecov.io/gh/devOpifex/log/branch/master/graph/badge.svg?token=AWAEDORHEU)](https://app.codecov.io/gh/devOpifex/log)
 <!-- badges: end -->
 
 [Docs](https://log.opifex.org)

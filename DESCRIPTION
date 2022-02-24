@@ -1,6 +1,6 @@
 Package: log
 Title: Record Events and Issues
-Version: 1.1.1.9000
+Version: 1.1.1
 Authors@R: 
     c(
     person(given = "John",
