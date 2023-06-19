@@ -122,6 +122,18 @@ Logger <- R6::R6Class(
     },
 #' @details Include the directory in the log
 #' @examples 
+#' info <- Logger$new("INFO")$file()
+#' info$log("file")
+    file = function(){
+      callback <- function(){
+        blurred(get_file())
+      }
+
+      private$.callbacks <- append(private$.callbacks, callback)
+      invisible(self)
+    },
+#' @details Include the directory in the log
+#' @examples 
 #' info <- Logger$new("INFO")$dir()
 #' info$log("directory")
     dir = function(){

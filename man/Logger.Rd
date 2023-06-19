@@ -53,6 +53,13 @@ err <- Logger$new("INFO")$hook(crayon::red)
 err$log("hello")
 
 ## ------------------------------------------------
+## Method `Logger$file`
+## ------------------------------------------------
+
+info <- Logger$new("INFO")$file()
+info$log("file")
+
+## ------------------------------------------------
 ## Method `Logger$dir`
 ## ------------------------------------------------
 
@@ -105,21 +112,22 @@ dump the messages.}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Logger$new()}}
-\item \href{#method-date}{\code{Logger$date()}}
-\item \href{#method-time}{\code{Logger$time()}}
-\item \href{#method-unix}{\code{Logger$unix()}}
-\item \href{#method-hook}{\code{Logger$hook()}}
-\item \href{#method-dir}{\code{Logger$dir()}}
-\item \href{#method-flag}{\code{Logger$flag()}}
-\item \href{#method-log}{\code{Logger$log()}}
-\item \href{#method-dump}{\code{Logger$dump()}}
-\item \href{#method-clone}{\code{Logger$clone()}}
+\item \href{#method-Logger-new}{\code{Logger$new()}}
+\item \href{#method-Logger-date}{\code{Logger$date()}}
+\item \href{#method-Logger-time}{\code{Logger$time()}}
+\item \href{#method-Logger-unix}{\code{Logger$unix()}}
+\item \href{#method-Logger-hook}{\code{Logger$hook()}}
+\item \href{#method-Logger-file}{\code{Logger$file()}}
+\item \href{#method-Logger-dir}{\code{Logger$dir()}}
+\item \href{#method-Logger-flag}{\code{Logger$flag()}}
+\item \href{#method-Logger-log}{\code{Logger$log()}}
+\item \href{#method-Logger-dump}{\code{Logger$dump()}}
+\item \href{#method-Logger-clone}{\code{Logger$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Logger-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Logger$new(prefix = NULL, write = FALSE, file = "log.log", sep = "\\t")}\if{html}{\out{</div>}}
@@ -155,8 +163,8 @@ info$log("hello")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-date"></a>}}
-\if{latex}{\out{\hypertarget{method-date}{}}}
+\if{html}{\out{<a id="method-Logger-date"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-date}{}}}
 \subsection{Method \code{date()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Logger$date(format = "\%d-\%m-\%Y")}\if{html}{\out{</div>}}
@@ -185,8 +193,8 @@ info$log("today")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-time"></a>}}
-\if{latex}{\out{\hypertarget{method-time}{}}}
+\if{html}{\out{<a id="method-Logger-time"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-time}{}}}
 \subsection{Method \code{time()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Logger$time(format = "\%H:\%M:\%S")}\if{html}{\out{</div>}}
@@ -215,8 +223,8 @@ info$log("now")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-unix"></a>}}
-\if{latex}{\out{\hypertarget{method-unix}{}}}
+\if{html}{\out{<a id="method-Logger-unix"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-unix}{}}}
 \subsection{Method \code{unix()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Logger$unix()}\if{html}{\out{</div>}}
@@ -237,8 +245,8 @@ info$log("timestamp")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-hook"></a>}}
-\if{latex}{\out{\hypertarget{method-hook}{}}}
+\if{html}{\out{<a id="method-Logger-hook"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-hook}{}}}
 \subsection{Method \code{hook()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Logger$hook(fn)}\if{html}{\out{</div>}}
@@ -267,8 +275,30 @@ err$log("hello")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-dir"></a>}}
-\if{latex}{\out{\hypertarget{method-dir}{}}}
+\if{html}{\out{<a id="method-Logger-file"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-file}{}}}
+\subsection{Method \code{file()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Logger$file()}\if{html}{\out{</div>}}
+}
+
+\subsection{Details}{
+Include the directory in the log
+}
+
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{info <- Logger$new("INFO")$file()
+info$log("file")
+}
+\if{html}{\out{</div>}}
+
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Logger-dir"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-dir}{}}}
 \subsection{Method \code{dir()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Logger$dir()}\if{html}{\out{</div>}}
@@ -289,8 +319,8 @@ info$log("directory")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-flag"></a>}}
-\if{latex}{\out{\hypertarget{method-flag}{}}}
+\if{html}{\out{<a id="method-Logger-flag"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-flag}{}}}
 \subsection{Method \code{flag()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Logger$flag(what)}\if{html}{\out{</div>}}
@@ -323,11 +353,11 @@ info$log("random")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-log"></a>}}
-\if{latex}{\out{\hypertarget{method-log}{}}}
+\if{html}{\out{<a id="method-Logger-log"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-log}{}}}
 \subsection{Method \code{log()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Logger$log(..., sep = " ", collapse = " ")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Logger$log(..., sep = " ", collapse = " ", prefix = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -354,8 +384,8 @@ info$log("Logger")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-dump"></a>}}
-\if{latex}{\out{\hypertarget{method-dump}{}}}
+\if{html}{\out{<a id="method-Logger-dump"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-dump}{}}}
 \subsection{Method \code{dump()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Logger$dump(file = "dump.log")}\if{html}{\out{</div>}}
@@ -384,8 +414,8 @@ info$log("hello")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-Logger-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-Logger-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{
